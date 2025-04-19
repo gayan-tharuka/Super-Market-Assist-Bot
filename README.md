@@ -14,40 +14,69 @@ A smart supermarket assistance system featuring:
 
 ## Hardware Requirements
 - ESP32 development board
-- ESP32 Camera module
+- ESP32 Camera module (OV2640 recommended)
 - Arduino UNO with motor shield
 - 16x2 I2C LCD display
-- Ultrasonic sensors (for human following)
-- DC motors with wheels
-- Power bank/battery
+- HC-SR04 Ultrasonic sensors (for human following)
+- 4 DC motors with wheels
+- 7.4V LiPo battery or power bank
+- Jumper wires and breadboard
+
+## Software Requirements
+- Arduino IDE 2.0+
+- Python 3.8+
+- Required libraries:
+  - For Arduino:
+    - NewPing.h (for ultrasonic sensors)
+    - AFMotor.h (Adafruit Motor Shield)
+    - LiquidCrystal_I2C.h (for LCD)
+    - [QRCode Library](https://github.com/ricmoo/QRCode) (for ESP32)
+  - For Python:
+    - OpenCV
+    - NumPy
+    - PyZBar
 
 ## Setup Instructions
 
-1. **Human Following Bot**:
-   - Upload `human_follow_bot_code.ino` to Arduino
-   - Connect ultrasonic sensors and motors as per code comments
+### 1. Installing QR Library in Arduino IDE
+1. Download the QRCode library from: https://github.com/ricmoo/QRCode
+2. In Arduino IDE:
+   - Go to Sketch > Include Library > Add .ZIP Library
+   - Select the downloaded ZIP file
+   - Alternatively, extract to your Arduino libraries folder:
+     - Windows: `Documents\Arduino\libraries\`
+     - Mac: `~/Documents/Arduino/libraries/`
+     - Linux: `~/Arduino/libraries/`
 
-2. **ESP32 Camera Module**:
-   - Upload `esp32_cam_module_code.ino` to ESP32-CAM
-   - Note the IP address after upload
+### 2. Human Following Bot
+1. Upload `human_follow_bot_code.ino` to Arduino
+2. Connections:
+   - Ultrasonic Sensor:
+     - VCC → 5V
+     - Trig → A1
+     - Echo → A0
+     - GND → GND
+   - Motors:
+     - M1-M4 → Motor shield outputs
+   - Servo → Pin 10
 
-3. **ESP32 Board with LCD**:
-   - Upload `esp32_board_code.ino` to ESP32
-   - Connect I2C LCD display
+### 3. ESP32 Camera Module
+1. Upload `esp32_cam_module_code.ino` to ESP32-CAM
+2. Select board: "AI Thinker ESP32-CAM"
+3. Note the IP address shown in Serial Monitor after upload
+4. Camera connections are pre-defined for AI Thinker module
 
-4. **Python Middleware**:
-   - Install required packages: `pip install opencv-python numpy pyzbar`
-   - Update IP addresses in `qr_processing.py`
-   - Run the script: `python qr_processing.py`
+### 4. ESP32 Board with LCD
+1. Upload `esp32_board_code.ino` to ESP32
+2. Connections:
+   - LCD I2C:
+     - SDA → GPIO21
+     - SCL → GPIO22
+     - VCC → 5V
+     - GND → GND
+3. Update WiFi credentials in code
 
-## Working
-1. Customer approaches the bot which starts following them
-2. Camera scans product QR codes
-3. Python script processes QR codes and calculates total
-4. ESP32 board displays product info and running total on LCD
-
-## Future Enhancements
-- Add voice feedback
-- Implement weight sensors for product verification
-- Add payment integration
-- Improve human detection algorithm
+### 5. Python Middleware
+1. Install requirements:
+   ```bash
+   pip install opencv-python numpy pyzbar
